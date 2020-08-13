@@ -41,7 +41,7 @@ class TransactionStore {
 }
 
 // View class, renders and updates components, handles UI events and updates to store
-// Just one big monolith for now, but could be broken down into sub-components
+// Just one big monolith for now, could be broken down into sub-components
 class ExpenseTrackerView {
   balance = document.getElementById("balance");
   moneyPlus = document.getElementById("money-plus");
@@ -137,5 +137,5 @@ function randomId() {
   return Math.floor(Math.random() * 10000000);
 }
 
-store = new TransactionStore();
-view = new ExpenseTrackerView(store);
+const store = new TransactionStore();
+const view = new ExpenseTrackerView(store);
