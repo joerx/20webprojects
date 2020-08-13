@@ -40,6 +40,8 @@ class TransactionStore {
   }
 }
 
+// View class, renders and updates components, handles UI events and updates to store
+// Just one big monolith for now, but could be broken down into sub-components
 class ExpenseTrackerView {
   balance = document.getElementById("balance");
   moneyPlus = document.getElementById("money-plus");
@@ -57,7 +59,7 @@ class ExpenseTrackerView {
     this.update(store);
   }
 
-  // Update view
+  // Update view - add transactions to DOM and update amounts
   update(store) {
     this.list.innerHTML = "";
     store.transactions.forEach((t) => this.addTransactionToDOM(t));
@@ -86,6 +88,7 @@ class ExpenseTrackerView {
     this.list.appendChild(item);
   }
 
+  // Form submit handler, adds transactions to store
   addTransaction(e) {
     e.preventDefault();
 
@@ -106,10 +109,12 @@ class ExpenseTrackerView {
     amount.value = "";
   }
 
+  // Delete button click handler, deletes transactions from store
   removeTransaction(tx) {
     store.remove(tx);
   }
 
+  // Updates values displayed in amounts panel when store changes
   updateValues(transactions) {
     const amounts = transactions.map((t) => t.amount);
 
